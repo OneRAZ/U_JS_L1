@@ -21,7 +21,15 @@ secondAnswer = prompt("Введите обязательную статью ра
                     "1000");
 appData.expenses[firstAnswer] = secondAnswer;
 }
+/* Пример того, как делали в школе (у меня останется моё)
+let a1 = ... ,
+    a2 = ... ,   
+    a3 = ... ,
+    a4 = ... ;
+appData.expenses.a1=a2;
+appData.expenses.a3=a4; */
+
 //console.log(appData.expenses);
 var key;
 alert("День "+ appData.timeData+
-        "\n"+"Бюджет "+ appData.budget);
+        "\n"+"Бюджет "+ appData.budget / 30);        //не внёс 1/30 - т.к. месяц!
