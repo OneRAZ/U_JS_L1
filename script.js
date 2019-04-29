@@ -1,4 +1,4 @@
-let money = prompt("Ваш бюджет на месяц?", "20000" );
+let money = +prompt("Ваш бюджет на месяц?", "20000" );
 let time = prompt("Введите дату в формате YYYY-MM-DD", "2019*04-12" );
 // let money = 2000;
 // let time = "2019*04-12";
@@ -13,23 +13,35 @@ let appData = {
     income: [],                 //массив данных с доп. доходом
     savings: false
 };
-let i = 0;
-for (i = 1; i < 3; i++ ) {
-firstAnswer = prompt("Введите обязательную статью расходов в этом месяце",
-                    "Еда");
-secondAnswer = prompt("Введите обязательную статью расходов в этом месяце",
-                    "1000");
-appData.expenses[firstAnswer] = secondAnswer;
-}
-/* Пример того, как делали в школе (у меня останется моё)
-let a1 = ... ,
-    a2 = ... ,   
-    a3 = ... ,
-    a4 = ... ;
-appData.expenses.a1=a2;
-appData.expenses.a3=a4; */
 
-//console.log(appData.expenses);
-var key;
-alert("День "+ appData.timeData+
-        "\n"+"Бюджет "+ appData.budget / 30);        //не внёс 1/30 - т.к. месяц!
+for (let i = 0; i < 2; i++ ) {  //While(...){}; do {} while(...);
+firstAnswer = prompt("Введите обязательную статью расходов в этом месяце (< 50 символов)",
+                    "Еда");
+secondAnswer = +prompt("Во сколько это обойдётся? (число)",
+                    "1000");
+
+if (typeof(firstAnswer) != null && typeof(secondAnswer) != null
+        && firstAnswer != "" && firstAnswer.length < 50
+        && !isNaN(secondAnswer) ) {              //NaN!=NaN
+                console.log("done");
+                /* с ключами работать пока не готов!!!
+                && firstAnswer != appData.expenses.firstAnswer
+                console.log(appData.expenses.firstAnswer);
+                console.log(firstAnswer);*/
+                appData.expenses[firstAnswer] = secondAnswer; 
+        } else { i--; }
+}
+
+appData.moneyPerDay = appData.budget / 30;
+
+alert("Ежедневный бюджет "+ appData.moneyPerDay);
+
+if(appData.moneyPerDay < 200) {
+        console.log("Маловато будет");
+} else if(appData.moneyPerDay >= 200 && appData.moneyPerDay < 2000) {
+        console.log("СереднячОк");
+} else if(appData.moneyPerDay >= 2000) {
+        console.log("АллигарХ-Х-Х");
+} else {
+        console.log("Что-то пошло не так");
+}
